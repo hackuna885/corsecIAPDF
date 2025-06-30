@@ -1,0 +1,147 @@
+/* CSS para el formulario de consulta a GEMINI */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to the top */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.contenedor {
+  background-color: #fff;
+  max-width: 800px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  margin-top: 0;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+textarea {
+  width: calc(100% - 20px); /* Adjust for padding */
+  min-height: 150px;
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding in width */
+  resize: vertical; /* Allow vertical resizing */
+}
+
+input[type="file"] {
+  display: block; /* Make it a block element for better spacing */
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.image-preview-container {
+  display: none;
+  /* Ocultar inicialmente */
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.image-preview-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+button {
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #7f8c8d;
+}
+
+.result-container {
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  display: none; /* Hidden by default, shown when result is available */
+}
+
+.result-container h2 {
+  color: #2c3e50;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+pre {
+  background-color: #e8f5e9; /* Light green for results */
+  padding: 15px;
+  border: 1px solid #c8e6c9;
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow: auto;
+  max-height: 400px; /* Limit height for long results */
+}
+.gradient-text {
+  /* Set the font size and weight as desired */
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: sans-serif; /* Or any other desired font */
+
+  background-image: linear-gradient(
+    to right,
+    #6771f5,
+    #cc418c
+  ); /* Starts with a blue-ish purple, ends with a pink-ish red */
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

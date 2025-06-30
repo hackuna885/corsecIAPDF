@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Upload</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="contenedor">
+    <h1>Consulta a <span class="gradient-text">CORSEC IA</span></h1>
+    <form id="consultaForm" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="documento">Seleccionar imagen (JPG, JPEG) o PDF:</label>
+        <input type="file" id="documento" name="documento" accept=".jpg, .jpeg, .pdf">
+      </div>
+      <div id="documentoPrevioContainer" class="document-preview-container">
+        <img id="imagenPrevio" src="" alt="Vista previa del documento">
+        <p id="pdfFileName" style="display: none;">Archivo PDF seleccionado: </p>
+      </div>
+
+      <div class="form-group">
+        <label for="consulta">Ingrese su consulta sobre el documento:</label>
+        <textarea id="consulta" name="consulta" rows="8" placeholder="Escribe tu consulta aquí..."></textarea>
+      </div>
+
+      <button type="submit" id="submitButton">Consultar</button>
+
+      <div id="resultadoContainer" class="result-container">
+        <h2>Resultado:</h2>
+        <pre id="resultado"></pre>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const documentoInput = document.getElementById("documento");
+    const documentoPrevioContainer = document.getElementById("documentoPrevioContainer");
+    const imagenPrevio = document.getElementById("imagenPrevio");
+    const pdfFileNameDisplay = document.getElementById("pdfFileName"); // Nuevo elemento
+    const consultaTextarea = document.getElementById("consulta");
+    const resultadoPre = document.getElementById("resultado");
+    const consultaForm = document.getElementById("consultaForm");
+    const submitButton = document.getElementById("submitButton");
+    const resultadoContainer = document.getElementById("resultadoContainer");
+
+    // Function to display image preview or PDF indicator
+    const mostrarDocumento = () => {
+      if (documentoInput.files && documentoInput.files[0]) {
+        const file = documentoInput.files[0];
+        const fileType = file.type;
+
+        consultaTextarea.value = "";
+        resultadoPre.innerHTML = "";
+        resultadoContainer.style.display = "none";
+
+        if (fileType === "image/jpeg" || fileType === "image/png") { // Mantener png por si acaso, aunque el backend solo acepte jpeg
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            imagenPrevio.src = e.target.result;
+            imagenPrevio.style.display = "block";
+            pdfFileNameDisplay.style.display = "none";
+            documentoPrevioContainer.style.display = "block";
+          };
+          reader.readAsDataURL(file);
+        } else if (fileType === "application/pdf") {
+          imagenPrevio.style.display = "none"; // Ocultar la imagen si es PDF
+          pdfFileNameDisplay.textContent = `Archivo PDF seleccionado: ${file.name}`;
+          pdfFileNameDisplay.style.display = "block";
+          documentoPrevioContainer.style.display = "block";
+        } else {
+          // Si el tipo de archivo no es soportado o no hay archivo
+          documentoPrevioContainer.style.display = "none";
+          imagenPrevio.src = "";
+          imagenPrevio.style.display = "none";
+          pdfFileNameDisplay.style.display = "none";
+        }
+      } else {
+        documentoPrevioContainer.style.display = "none";
+        imagenPrevio.src = "";
+        imagenPrevio.style.display = "none";
+        pdfFileNameDisplay.style.display = "none";
+      }
+    };
+
+    // Function to escape HTML characters for safe display
+    const escaparCaracteresHTML = (texto) => {
+      return texto.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    };
+
+    // Event listener for document input change
+    documentoInput.addEventListener("change", mostrarDocumento);
+
+    // Event listener for form submission
+    consultaForm.addEventListener("submit", async (evento) => {
+      evento.preventDefault();
+
+      const consulta = consultaTextarea.value.trim();
+      const documento = documentoInput.files[0]; // Ahora es 'documento'
+
+      if (!documento) {
+        alert("Por favor, seleccione un documento (imagen o PDF) para consultar.");
+        return;
+      }
+
+      if (!consulta) {
+        alert("Por favor, ingrese su consulta sobre el documento.");
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Espere, por favor...";
+      resultadoPre.innerHTML = "Cargando..."; // Indicate loading
+      resultadoContainer.style.display = "block"; // Show result container
+
+      const datosFormulario = new FormData();
+      datosFormulario.append("consulta", consulta);
+      datosFormulario.append("documento", documento); // Ahora es 'documento'
+
+      try {
+        const respuesta = await fetch("app/php/consulta.php", {
+          method: 'POST',
+          body: datosFormulario
+        });
+
+        if (!respuesta.ok) {
+          throw new Error(`HTTP error! status: ${respuesta.status}`);
+        }
+
+        const data = await respuesta.json();
+        console.log(data.mensaje);
+        resultadoPre.innerHTML = escaparCaracteresHTML(data.mensaje);
+
+      } catch (error) {
+        console.error('Error en la solicitud fetch:', error);
+        resultadoPre.innerHTML = `Error: No se pudo procesar la consulta. (${escaparCaracteresHTML(error.message)})`;
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Consultar";
+      }
+    });
+  </script>
+</body>
+
+</html>
