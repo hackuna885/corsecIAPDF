@@ -6,33 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CORSEC Upload IMG / PDF</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
 <body>
-  <div class="contenedor">
-    <h1>Consulta a <span class="gradient-text">CORSEC IA</span></h1>
-    <form id="consultaForm" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="documento">Seleccionar imagen (JPG, JPEG) o PDF:</label>
-        <input type="file" id="documento" name="documento" accept=".jpg, .jpeg, .pdf">
-      </div>
-      <div id="documentoPrevioContainer" class="document-preview-container">
-        <img id="imagenPrevio" src="" alt="Vista previa del documento">
-        <p id="pdfFileName" style="display: none;">Archivo PDF seleccionado: </p>
-      </div>
-
-      <div class="form-group">
-        <label for="consulta">Ingrese su consulta sobre el documento:</label>
-        <textarea id="consulta" name="consulta" rows="8" placeholder="Escribe tu consulta aquí..."></textarea>
-      </div>
-
-      <button type="submit" id="submitButton">Consultar</button>
-
-      <div id="resultadoContainer" class="result-container">
-        <h2>Resultado:</h2>
-        <pre id="resultado"></pre>
-      </div>
-    </form>
+  <div class="container">
+    <div class="row">
+      <div class="contenedor">
+        <h1>Consulta a <span class="gradient-text">CORSEC IA</span></h1>
+        <form id="consultaForm" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="documento">Seleccionar imagen (JPG, JPEG) o PDF:</label>
+            <input type="file" class="form-control" id="documento" name="documento" accept=".jpg, .jpeg, .pdf">
+          </div>
+          <div id="documentoPrevioContainer" class="document-preview-container">
+            <img id="imagenPrevio" class="img-fluid" src="" alt="Vista previa del documento">
+            <p id="pdfFileName" style="display: none;">Archivo PDF seleccionado: </p>
+          </div>
+    
+          <div class="form-group">
+            <label for="consulta">Ingrese su consulta sobre el documento:</label>
+            <textarea id="consulta" class="form-control" name="consulta" rows="8" placeholder="Escribe tu consulta aquí..."></textarea>
+          </div>
+    
+          <button type="submit" id="submitButton">Consultar</button>
+    
+          <div id="resultadoContainer" class="result-container">
+            <h2>Resultado:</h2>
+            <pre id="resultado"></pre>
+          </div>
+        </form>
+      </div>      
+    </div>
   </div>
 
   <script>

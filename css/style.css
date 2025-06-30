@@ -1,139 +1,118 @@
 /* CSS para el formulario de consulta a GEMINI */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f7f6;
-  color: #333;
-  margin: 0;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Align to the top */
-  min-height: 100vh;
-  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  background-color: #f4f7f6 !important;
+  color: #333 !important;
+  margin: 0 !important;
+  padding: 20px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important; /* Align to the top */
+  min-height: 100vh !important;
+  box-sizing: border-box !important;
 }
 
 .contenedor {
-  background-color: #fff;
-  max-width: 800px;
-  width: 100%;
-  margin: 20px auto;
-  padding: 30px;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #fff !important;
+  max-width: 800px !important;
+  width: 100% !important;
+  margin: 20px auto !important;
+  padding: 30px !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 
 h1 {
-  margin-top: 0;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2em;
+  margin-top: 0 !important;
+  color: #2c3e50 !important;
+  text-align: center !important;
+  margin-bottom: 30px !important;
+  font-size: 2em !important;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #555;
-}
-
-textarea {
-  width: calc(100% - 20px); /* Adjust for padding */
-  min-height: 150px;
-  font-size: 1rem;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box; /* Include padding in width */
-  resize: vertical; /* Allow vertical resizing */
-}
-
-input[type="file"] {
-  display: block; /* Make it a block element for better spacing */
-  margin-top: 5px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
+  display: block !important;
+  margin-bottom: 8px !important;
+  font-weight: bold !important;
+  color: #555 !important;
 }
 
 .image-preview-container {
-  display: none;
+  display: none !important;
   /* Ocultar inicialmente */
-  margin-top: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  text-align: center;
+  margin-top: 20px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 5px !important;
+  padding: 10px !important;
+  background-color: #f9f9f9 !important;
+  text-align: center !important;
 }
 
 .image-preview-container img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 3px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 3px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
 }
 
 button {
-  cursor: pointer;
-  background-color: #3498db;
-  color: #fff;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  margin-top: 20px;
-  width: 100%;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer !important;
+  background-color: #3498db !important;
+  color: #fff !important;
+  padding: 12px 25px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  font-size: 1.1rem !important;
+  margin-top: 20px !important;
+  width: 100% !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
 button:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
+  background-color: #2980b9 !important;
+  transform: translateY(-2px) !important;
 }
 
 button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  background-color: #7f8c8d;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  background-color: #7f8c8d !important;
 }
 
 .result-container {
-  margin-top: 30px;
-  border-top: 1px solid #eee;
-  padding-top: 20px;
-  display: none; /* Hidden by default, shown when result is available */
+  margin-top: 30px !important;
+  border-top: 1px solid #eee !important;
+  padding-top: 20px !important;
+  display: none !important; /* Hidden by default, shown when result is available */
 }
 
 .result-container h2 {
-  color: #2c3e50;
-  font-size: 1.5em;
-  margin-bottom: 15px;
+  color: #2c3e50 !important;
+  font-size: 1.5em !important;
+  margin-bottom: 15px !important;
 }
 
 pre {
-  background-color: #e8f5e9; /* Light green for results */
-  padding: 15px;
-  border: 1px solid #c8e6c9;
-  border-radius: 5px;
-  font-size: 1rem;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  overflow: auto;
-  max-height: 400px; /* Limit height for long results */
+  background-color: #e8f5e9 !important; /* Light green for results */
+  padding: 15px !important;
+  border: 1px solid #c8e6c9 !important;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  white-space: pre-wrap !important;
+  overflow: auto !important;
+  max-height: 400px !important; /* Limit height for long results */
 }
 .gradient-text {
   /* Set the font size and weight as desired */
-  font-size: 1.2em;
-  font-weight: bold;
-  font-family: sans-serif; /* Or any other desired font */
+  font-size: 1.2em !important;
+  font-weight: bold !important;
+  font-family: sans-serif !important; /* Or any other desired font */
 
   background-image: linear-gradient(
     to right,
@@ -141,7 +120,7 @@ pre {
     #cc418c
   ); /* Starts with a blue-ish purple, ends with a pink-ish red */
 
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
 }
